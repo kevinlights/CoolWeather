@@ -1,4 +1,4 @@
-package com.jgh.learn.android.coolweather.db;
+package com.gjh.learn.android.coolweather.db;
 
 import org.litepal.crud.LitePalSupport;
 
