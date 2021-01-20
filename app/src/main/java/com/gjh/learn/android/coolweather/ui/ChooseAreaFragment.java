@@ -1,6 +1,7 @@
 package com.gjh.learn.android.coolweather.ui;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.gjh.learn.android.coolweather.MainActivity;
 import com.gjh.learn.android.coolweather.R;
+import com.gjh.learn.android.coolweather.activity.WeatherActivity;
 import com.gjh.learn.android.coolweather.db.City;
 import com.gjh.learn.android.coolweather.db.Country;
 import com.gjh.learn.android.coolweather.db.Province;
@@ -74,6 +77,12 @@ public class ChooseAreaFragment extends Fragment {
             } else if (currentLevel == LEVEL_CITY) {
                 selectedCity = cityList.get(position);
                 queryCountries();
+            } else if (currentLevel == LEVEL_COUNTRY) {
+                String weatherId = countryList.get(position).getWeatherId();
+                Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                intent.putExtra("weather_id", weatherId);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
         backButton.setOnClickListener(v -> {
@@ -88,7 +97,7 @@ public class ChooseAreaFragment extends Fragment {
 
     private void queryProvinces() {
         titleText.setText("China");
-        backButton.setVisibility(View.VISIBLE);
+        backButton.setVisibility(View.GONE);
         provinceList = LitePal.findAll(Province.class);
         if (provinceList.size() > 0) {
             dataList.clear();
