@@ -17,7 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.WeatherActivity" />
+        <activity
+            android:name=".activity.WeatherActivity"
+            android:theme="@style/Theme.CoolWeather.Title" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
