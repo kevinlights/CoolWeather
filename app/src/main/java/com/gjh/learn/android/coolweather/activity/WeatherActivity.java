@@ -1,5 +1,6 @@
 package com.gjh.learn.android.coolweather.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -24,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.gjh.learn.android.coolweather.R;
 import com.gjh.learn.android.coolweather.gson.Forecast;
 import com.gjh.learn.android.coolweather.gson.Weather;
+import com.gjh.learn.android.coolweather.service.AutoUpdateService;
 import com.gjh.learn.android.coolweather.util.HttpUtil;
 import com.gjh.learn.android.coolweather.util.LogUtil;
 import com.gjh.learn.android.coolweather.util.Utility;
@@ -197,5 +199,6 @@ public class WeatherActivity extends AppCompatActivity {
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
 
+        startService(new Intent(this, AutoUpdateService.class));
     }
 }
